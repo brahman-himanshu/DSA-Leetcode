@@ -1,0 +1,35 @@
+class Solution {
+public:
+    bool isPalindrome(int x) {
+
+        // Negative numbers palindrome nahi hote
+        // Aur jo numbers 0 par end hote hain
+        // wo bhi palindrome nahi honge
+        // except number 0 itself
+
+        if(x < 0 || (x % 10 == 0 && x != 0)) {
+            return false;
+        }
+
+        int reversedHalf = 0;
+
+        // Sirf half number reverse karenge
+        while(x > reversedHalf) {
+
+            // Last digit add karo
+            reversedHalf = reversedHalf * 10 + x % 10;
+
+            // Last digit remove karo
+            x = x / 10;
+        }
+
+        // Even digits case:
+        // x == reversedHalf
+
+        // Odd digits case:
+        // middle digit ignore karenge
+        // x == reversedHalf / 10
+
+        return (x == reversedHalf || x == reversedHalf / 10);
+    }
+};
