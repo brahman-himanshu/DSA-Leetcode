@@ -1,0 +1,33 @@
+class Solution {
+public:
+    vector<int> findIntersectionValues(vector<int>& nums1, vector<int>& nums2) {
+
+        // Dono arrays ke elements store karne ke liye set banaya
+        unordered_set<int> set1(nums1.begin(), nums1.end());
+        unordered_set<int> set2(nums2.begin(), nums2.end());
+
+        int count1 = 0;
+        int count2 = 0;
+
+        // nums1 ke har element ko check karenge
+        // ki kya wo nums2 me present hai
+        for(int num : nums1) {
+
+            if(set2.count(num)) {
+                count1++;
+            }
+        }
+
+        // nums2 ke har element ko check karenge
+        // ki kya wo nums1 me present hai
+        for(int num : nums2) {
+
+            if(set1.count(num)) {
+                count2++;
+            }
+        }
+
+        // Answer vector ke form me return kar diya
+        return {count1, count2};
+    }
+};
