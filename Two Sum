@@ -1,0 +1,21 @@
+class Solution {
+public:
+    vector<int> twoSum(vector<int>& nums, int target) {
+
+        for(int i = 0; i < nums.size(); i++) {
+
+            for(int j = i + 1; j < nums.size(); j++) {
+
+                // Agar dono numbers ka sum target ke equal hai
+                if(nums[i] + nums[j] == target) {
+
+                    // Dono indices return kar do
+                    return {i, j};
+                }
+            }
+        }
+
+        // Agar pair nahi mila
+        return {};
+    }
+};
