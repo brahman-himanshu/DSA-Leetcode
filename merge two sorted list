@@ -1,0 +1,60 @@
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+
+class Solution {
+public:
+    ListNode* mergeTwoLists(ListNode* list1, ListNode* list2) {
+
+        // Ek dummy node banaya taki starting handle karna easy ho
+        ListNode dummy;
+
+        // temp pointer dummy ko point karega
+        ListNode* temp = &dummy;
+
+        // Jab tak dono lists me elements hain
+        while (list1 != nullptr && list2 != nullptr) {
+
+            // Agar list1 ka value chota ya equal hai
+            if (list1->val <= list2->val) {
+
+                // temp ke next me list1 wala node connect karo
+                temp->next = list1;
+
+                // list1 ko aage badhao
+                list1 = list1->next;
+            }
+            else {
+
+                // warna list2 wala node connect karo
+                temp->next = list2;
+
+                // list2 ko aage badhao
+                list2 = list2->next;
+            }
+
+            // temp ko bhi aage move karo
+            temp = temp->next;
+        }
+
+        // Agar list1 me abhi bhi nodes bache hain
+        if (list1 != nullptr) {
+            temp->next = list1;
+        }
+        else {
+
+            // warna list2 ke remaining nodes connect kar do
+            temp->next = list2;
+        }
+
+        // dummy ka next merged list ka head hoga
+        return dummy.next;
+    }
+};
