@@ -1,0 +1,38 @@
+class Solution {
+public:
+    int search(vector<int>& nums, int target) {
+
+        // Starting index
+        int left = 0;
+
+        // Ending index
+        int right = nums.size() - 1;
+
+        // Jab tak left right se chota ya equal hai
+        while(left <= right) {
+
+            // Mid find karna
+            int mid = left + (right - left) / 2;
+
+            // Agar target mil gaya
+            if(nums[mid] == target) {
+                return mid;
+            }
+
+            // Agar mid value target se choti hai
+            // to right side me search karenge
+            else if(nums[mid] < target) {
+                left = mid + 1;
+            }
+
+            // Agar mid value target se badi hai
+            // to left side me search karenge
+            else {
+                right = mid - 1;
+            }
+        }
+
+        // Agar target nahi mila
+        return -1;
+    }
+};
