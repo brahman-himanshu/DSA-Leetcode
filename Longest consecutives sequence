@@ -1,0 +1,43 @@
+Given an unsorted array of integers nums, return the length of the longest consecutive elements sequence.
+
+You must write an algorithm that runs in O(n) time.
+
+
+
+Solution==
+
+class Solution {
+public:
+
+    bool linearSearch(vector<int>& nums, int target) {
+
+        for(int i = 0; i < nums.size(); i++) {
+            if(nums[i] == target) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    int longestConsecutive(vector<int>& nums) {
+
+        int longest = 1;
+
+        for(int i = 0; i < nums.size(); i++) {
+
+            int x = nums[i];
+            int count = 1;
+
+            while(linearSearch(nums, x + 1)) {
+
+                x = x + 1;
+                count++;
+            }
+
+            longest = max(longest, count);
+        }
+
+        return longest;
+    }
+};
